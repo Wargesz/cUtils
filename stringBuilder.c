@@ -1,11 +1,10 @@
 #ifndef malloc
     #include <stdlib.h>
 #endif
+
 #define sbAppend stringBuilderAppend
 #define sbNew stringBuilderNew
 #define sbFree stringBuilderFree
-
-const int SIZE = 64;
 
 typedef struct StringBuilder {
     int length;
@@ -15,6 +14,8 @@ typedef struct StringBuilder {
 
 StringBuilder stringBuilderNew();
 void stringBuilderAppend(StringBuilder *sb, char *content);
+
+const int SIZE = 64;
 
 StringBuilder stringBuilderNew() {
     StringBuilder sb;
@@ -26,6 +27,7 @@ StringBuilder stringBuilderNew() {
 
 void stringBuilderAppend(StringBuilder *sb, char *content) {
    int contentLength = 0;
+   int i;
    while ('\0' != *content) {
        contentLength++;
        content++;
@@ -33,7 +35,7 @@ void stringBuilderAppend(StringBuilder *sb, char *content) {
    content-=contentLength;
    if (sb->head == 0) {
        char *sbContent = sb->content;
-       for (int i = 0; i < contentLength; i++) {
+       for (i = 0; i < contentLength; i++) {
            *sbContent = *content;
            sbContent++;
            content++;
@@ -44,7 +46,7 @@ void stringBuilderAppend(StringBuilder *sb, char *content) {
    }
    if (sb->head + contentLength < sb->length) {
        char *sbContent = sb->content + sb->head;
-       for (int i = 0; i < contentLength; i++) {
+       for (i = 0; i < contentLength; i++) {
            *sbContent = *content;
            sbContent++;
            content++;
@@ -60,11 +62,10 @@ void stringBuilderAppend(StringBuilder *sb, char *content) {
            overflow = 1;
        }
        sb->length = sb->length + SIZE * (wholeParts + overflow);
-       //create new content
        char *newContent = realloc(sb->content,sizeof(char) * sb->length);
        char *begin = newContent;
        newContent+=sb->head;
-       for (int i = 0; i < contentLength; i++) {
+       for (i = 0; i < contentLength; i++) {
            *newContent=*content;
            newContent++;
            content++;
