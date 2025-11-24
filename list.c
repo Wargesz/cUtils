@@ -15,6 +15,7 @@ void addNode(Node*, char*);
 void freeNodes(Node*);
 Node* nodeAt(Node*, int);
 char* nodeValueAt(Node*, int);
+int nodeLength(Node*);
 
 Node* newNode(char *content) {
     Node *node = (Node*)malloc(sizeof(Node));
@@ -56,6 +57,7 @@ void freeNodes(Node *node) {
         head = tmp;
     }
     free(node);
+    node = NULL;
 }
 
 Node* nodeAt(Node *node, int index) {
@@ -73,4 +75,16 @@ Node* nodeAt(Node *node, int index) {
 
 char* nodeValueAt(Node *node, int index) {
     return nodeAt(node, index)->value;
+}
+
+int nodeLength(Node *node) {
+    if (node == NULL) {
+        return 0;
+    }
+    int i = 0;
+    while (node != NULL) {
+        node = node->next;
+        i++;
+    }
+    return i;
 }
