@@ -28,6 +28,10 @@ Node* newNode(char *content) {
         content++;
         i++;
     }
+    while (i < LENGTH-1)  {
+        node->value[i] = '\0';
+        i++;
+    }
     node->next = NULL;
     return node;
 }
