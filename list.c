@@ -1,7 +1,5 @@
 #include <stdio.h>
-#ifndef malloc
 #include <stdlib.h>
-#endif
 
 #define LENGTH 256
 
