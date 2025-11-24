@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "strings.c"
 
 #define LENGTH 256
 
@@ -14,6 +15,8 @@ void freeNodes(Node*);
 Node* nodeAt(Node*, int);
 char* nodeValueAt(Node*, int);
 int nodeLength(Node*);
+void sortNodes(Node*);
+void swapValues(Node*, Node*);
 
 Node* newNode(char *content) {
     Node *node = (Node*)malloc(sizeof(Node));
@@ -89,4 +92,38 @@ int nodeLength(Node *node) {
         i++;
     }
     return i;
+}
+
+void sortNodes(Node *n) {
+    int i, o;
+    int swapped;
+    for (i = 0; i < nodeLength(n) - 1 ; i++) {
+        swapped = 0;
+        for (o = 0; o < nodeLength(n) - (i + 1); o++) {
+            if (compareChars(
+                        nodeValueAt(n, o),
+                        nodeValueAt(n, o + 1)
+                        ) > 0) {
+                swapValues(nodeAt(n, o), nodeAt(n, o + 1));
+                swapped = 1;
+            }
+        }
+        if (!swapped) {
+            break;
+        }
+    }
+}
+
+void swapValues(Node *n1, Node *n2) {
+    char value[LENGTH];
+    int i;
+    for (i = 0; i < LENGTH; i++) {
+        value[i] = n1->value[i];
+    }
+    for (i = 0; i < LENGTH; i++) {
+        n1->value[i] = n2->value[i];
+    }
+    for (i = 0; i < LENGTH; i++) {
+        n2->value[i] = value[i];
+    }
 }
