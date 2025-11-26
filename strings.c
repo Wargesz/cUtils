@@ -60,7 +60,3 @@ int posInAlphabet(char c) {
     }
     return i;
 }
-
-void addToCharArray(char a[], char* c) {
-    printf("%d", sizeof(a));
-}
