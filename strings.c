@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int compareChars(char*, char*);
-int charLength(char*);
-char* toLower(char *);
-int isLetter(char);
-int posInAlphabet(char);
+#include "strings.h"
 
 const char *alphabet = ".-_0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
 
@@ -64,4 +59,8 @@ int posInAlphabet(char c) {
         }
     }
     return i;
+}
+
+void addToCharArray(char a[], char* c) {
+    printf("%d", sizeof(a));
 }
