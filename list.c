@@ -1,22 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "list.h"
 #include "strings.c"
-
-#define LENGTH 256
-
-typedef struct Node {
-    char value[LENGTH];
-    struct Node *next;
-} Node;
-
-Node* newNode(char*);
-void addNode(Node*, char*);
-void freeNodes(Node*);
-Node* nodeAt(Node*, int);
-char* nodeValueAt(Node*, int);
-int nodeLength(Node*);
-void sortNodes(Node*);
-void swapValues(Node*, Node*);
 
 Node* newNode(char *content) {
     Node *node = (Node*)malloc(sizeof(Node));
@@ -127,3 +112,5 @@ void swapValues(Node *n1, Node *n2) {
         n2->value[i] = value[i];
     }
 }
+
+void floatNode(Node *n, int index) {}
