@@ -77,3 +77,17 @@ int endsWith(char *str, char *substr) {
     }
     return 1;
 }
+
+int equals(char *c1, char *c2) {
+    if (charLength(c1) != charLength(c2)) {
+        return 0;
+    }
+    while (*c1 != '\0') {
+        if (*c1 != *c2) {
+            return 0;
+        }
+        c1++;
+        c2++;
+    }
+    return 1;
+}

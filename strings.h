@@ -8,5 +8,6 @@ int isLetter(char);
 int posInAlphabet(char);
 void addToCharArray(char[], char*);
 int endsWith(char *str, char *substr);
+int equals(char*, char*);
 
 #endif
