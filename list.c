@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
-#include "strings.c"
+#include "strings.h"
 
 Node* newNode(char *content) {
     Node *node = (Node*)malloc(sizeof(Node));
