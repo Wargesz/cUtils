@@ -91,3 +91,12 @@ int equals(char *c1, char *c2) {
     }
     return 1;
 }
+
+void setTo(char *target, char *c) {
+    while (*c != '\0') {
+        *target = *c;
+        target++;
+        c++;
+    }
+    *target = '\0';
+}
