@@ -9,5 +9,6 @@ int posInAlphabet(char);
 void addToCharArray(char[], char*);
 int endsWith(char *str, char *substr);
 int equals(char*, char*);
+void setTo(char *target, char *str);
 
 #endif
