@@ -60,3 +60,20 @@ int posInAlphabet(char c) {
     }
     return i;
 }
+
+int endsWith(char *str, char *substr) {
+    int length = charLength(str);
+    int sublength = charLength(substr);
+    if (sublength > length) {
+        return 0;
+    }
+    str+=length-1;
+    substr+=sublength-1;
+    while (sublength != 0) {
+        if (*str != *substr) {
+            return 0;
+        }
+        sublength--;
+    }
+    return 1;
+}

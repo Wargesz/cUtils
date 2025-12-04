@@ -7,5 +7,6 @@ char* toLower(char *);
 int isLetter(char);
 int posInAlphabet(char);
 void addToCharArray(char[], char*);
+int endsWith(char *str, char *substr);
 
 #endif
