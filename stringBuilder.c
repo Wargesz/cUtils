@@ -1,22 +1,3 @@
-#ifndef malloc
-    #include <stdlib.h>
-#endif
-
-#define sbAppend stringBuilderAppend
-#define sbNew stringBuilderNew
-#define sbFree stringBuilderFree
-
-typedef struct StringBuilder {
-    int length;
-    int head;
-    char *content;
-} StringBuilder;
-
-StringBuilder stringBuilderNew();
-void stringBuilderAppend(StringBuilder *sb, char *content);
-
-const int SIZE = 64;
-
 StringBuilder stringBuilderNew() {
     StringBuilder sb;
     sb.length = SIZE;
