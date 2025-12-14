@@ -1,6 +1,4 @@
-#include "dict.h"
-#include "list.h"
-#include "strings.h"
+#include "cutils.h"
 #include <stdio.h>
 #include <stdlib.h>
 

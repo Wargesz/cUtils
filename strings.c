@@ -1,6 +1,6 @@
+#include "cutils.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "strings.h"
 
 const char *alphabet = ".-_0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
 
