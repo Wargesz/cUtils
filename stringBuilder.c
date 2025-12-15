@@ -1,63 +1,52 @@
-StringBuilder stringBuilderNew() {
-    StringBuilder sb;
-    sb.length = SIZE;
-    sb.head = 0;
-    sb.content = malloc(sizeof(char) * sb.length);
+#include "cutils.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+StringBuilder* stringBuilderNew() {
+    StringBuilder* sb = (StringBuilder*) malloc(sizeof(StringBuilder));
+    sb->length = STRINGBUILDER_SIZE;
+    sb->head = 0;
+    sb->content = (char*) malloc(sizeof(char) * sb->length);
     return sb;
 }
 
 void stringBuilderAppend(StringBuilder *sb, char *content) {
-   int contentLength = 0;
-   int i;
-   while ('\0' != *content) {
-       contentLength++;
-       content++;
-   }
-   content-=contentLength;
-   if (sb->head == 0) {
-       char *sbContent = sb->content;
-       for (i = 0; i < contentLength; i++) {
-           *sbContent = *content;
-           sbContent++;
-           content++;
-       }
-       *sbContent = '\0';
-       sb->head += contentLength;
-       return;
-   }
-   if (sb->head + contentLength < sb->length) {
-       char *sbContent = sb->content + sb->head;
-       for (i = 0; i < contentLength; i++) {
-           *sbContent = *content;
-           sbContent++;
-           content++;
-       }
-       *sbContent = '\0';
-       sb->head += contentLength;
-       return;
-   }
-   if (sb->head + contentLength >= sb->length) {
-       int wholeParts = contentLength/SIZE;
-       int overflow = 0;
-       if (contentLength%SIZE!=0) {
-           overflow = 1;
-       }
-       sb->length = sb->length + SIZE * (wholeParts + overflow);
-       char *newContent = realloc(sb->content,sizeof(char) * sb->length);
-       char *begin = newContent;
-       newContent+=sb->head;
-       for (i = 0; i < contentLength; i++) {
-           *newContent=*content;
-           newContent++;
-           content++;
-       }
-       *newContent = '\0';
-       sb->content = begin;
-       sb->head += contentLength;
-       return;
-   }
+    int length = charLength(content);
+    char *s = sb->content;
+    int freeSpace = stringBuilderSpace(sb);
+    s += sb->head;
+    if (freeSpace >= length) {
+        sb->head += length;
+        while (*content != '\0') {
+            *s = *content;
+            s++;
+            content++;
+        }
+        *s = '\0';
+        return;
+    }
+    length++;
+    int sections = length/STRINGBUILDER_SIZE;
+    if (length%STRINGBUILDER_SIZE) {
+        sections++;
+    }
+    sb->length += sections * STRINGBUILDER_SIZE;
+    sb->content = realloc(sb->content, sizeof(char) * sb->length);
+    s = sb->content + sb->head;
+    while (*content != '\0') {
+        *s = *content;
+        s++;
+        content++;
+    }
+    *s = '\0';
+    sb->head += length - 1;
 }
 
-void stringBuilderFree(StringBuilder *sb) {
+void freeStringBuilder(StringBuilder *sb) {
     free(sb->content);
+    free(sb);
+}
+
+int stringBuilderSpace(StringBuilder *sb) {
+    return  sb->length - sb->head - 1;
 }
