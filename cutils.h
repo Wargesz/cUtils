@@ -43,7 +43,7 @@ typedef struct StringBuilder {
 } StringBuilder;
 
 StringBuilder* stringBuilderNew();
-void appendToStringBuilder(StringBuilder*, char*);
+void stringBuilderAppend(StringBuilder*, char*);
 void freeStringBuilder(StringBuilder*);
 int stringBuilderSpace(StringBuilder*);
 
