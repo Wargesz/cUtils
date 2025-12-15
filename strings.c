@@ -1,5 +1,4 @@
 #include "cutils.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 const char *alphabet = ".-_0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
