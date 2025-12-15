@@ -1,5 +1,5 @@
+#include "../cutils.h"
 #include <stdio.h>
-#include "../list.c"
 #include <dirent.h>
 
 int main(void) {

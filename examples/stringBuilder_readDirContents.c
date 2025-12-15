@@ -1,6 +1,6 @@
+#include "../cutils.h"
 #include <dirent.h>
 #include <stdio.h>
-#include "../stringBuilder.c"
 
 int main(void) {
     DIR *d = opendir("..");
@@ -13,14 +13,14 @@ int main(void) {
         printf("failed to read dir");
         return 1;
     }
-    StringBuilder sb = sbNew();
+    StringBuilder *sb = stringBuilderNew();
     while (di != NULL) {
-        sbAppend(&sb, di->d_name);
-        sbAppend(&sb, "\n");
+        stringBuilderAppend(sb, di->d_name);
+        stringBuilderAppend(sb, "\n");
         di = readdir(d);
     }
     closedir(d);
-    printf("%s", sb.content);
-    sbFree(&sb);
+    printf("%s", sb->content);
+    freeStringBuilder(sb);
     return 0;
 }
