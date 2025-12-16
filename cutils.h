@@ -1,6 +1,8 @@
 #ifndef CUTILS
 #define CUTILS
 
+#include <stdio.h> /* for io  */
+
 /* STRINGS */
 
 int compareChars(char*, char*);
@@ -59,5 +61,11 @@ void addDict(Dict*, char *key, char *value);
 void freeDict(Dict*);
 char* dictValue(Dict*, char *key);
 int hasKey(Dict*, char *key);
+
+/* IO */
+
+void readNext(FILE*, StringBuilder*);
+void readAll(FILE*, StringBuilder*);
+void readLine(FILE*, StringBuilder*);
 
 #endif
