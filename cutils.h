@@ -12,8 +12,11 @@ int isLetter(char);
 int posInAlphabet(char);
 void addToCharArray(char[], char*);
 int endsWith(char *str, char *substr);
+int startsWith(char *str, char *substr);
 int equals(char*, char*);
 void setTo(char *target, char *str);
+int findChar(char *str, char c);
+int contains(char *target, char *sub);
 
 /* LIST */
 

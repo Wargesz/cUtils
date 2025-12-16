@@ -77,6 +77,20 @@ int endsWith(char *str, char *substr) {
     return 1;
 }
 
+int startsWith(char *str, char *substr) {
+    if (charLength(substr) > charLength(str)) {
+        return 0;
+    }
+    while (*substr != '\0') {
+        if (*str != *substr) {
+            return 0;
+        }
+        str++;
+        substr++;
+    }
+    return 1;
+}
+
 int equals(char *c1, char *c2) {
     if (charLength(c1) != charLength(c2)) {
         return 0;
@@ -98,4 +112,61 @@ void setTo(char *target, char *c) {
         c++;
     }
     *target = '\0';
+}
+
+int contains(char *target, char *sub) {
+    int length = charLength(sub);
+    while (charLength(target) >= length) {
+        if (startsWith(target, sub)) {
+            return 1;
+        }
+        target++;
+    }
+    return 0;
+}
+
+int strCount(char *target, char *sub) {
+    int count = 0;
+    int next = findChar(target, *sub);
+    int length = charLength(target);
+    target += next > 0 ? next : 1;
+    length -= next > 0 ? next : 1;
+    while (length >= 0 && contains(target, sub)) {
+        target += next > 0 ? next : 1;
+        length -= next > 0 ? next : 1;
+        next = findChar(target, *sub);
+        count++;
+    }
+    return count;
+}
+
+char *subStr(char *str, int begin, int end) {
+    int strLength = charLength(str);
+    if (end + 1 > strLength) {
+        return NULL;
+    }
+    int substrLength = end-begin;
+    char *sub = (char*) malloc(sizeof(char) * (strLength + 1));
+    char *returnValue = sub;
+    str += begin;
+    while (substrLength != 0) {
+        *sub = *str;
+        sub++;
+        str++;
+        substrLength--;
+    }
+    *sub = '\0';
+    return returnValue;
+}
+
+int findChar(char *str, char c) {
+    int i = 0;
+    while (*str != '\0') {
+        if (*str == c) {
+            return i;
+        }
+        i++;
+        str++;
+    }
+    return -1;
 }
