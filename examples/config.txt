@@ -1,0 +1,3 @@
+c vim
+txt vim
+mkv vlc
